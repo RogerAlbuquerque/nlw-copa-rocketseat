@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind utilities;          /*Esses comandos fazem o carregamento das bibliotecas do tailwind para ele funcionar */
+@tailwind components;         /* Só é preciso imporar esse arquivo no "_app.tsx" que da para usar tailwind em tudo*/
+
+body{
+    -webkit-font-smoothing:antialising;
+}

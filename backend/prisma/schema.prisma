@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Pool {
+  id        String   @id @default(cuid()) // **** 01# ****
+  title     String
+  code      String   @unique // **** 01# ****
+  createdAt DateTime @default(now()) // "now()" retorna a data e hora atual da maquina
+
+  ownerId String?
+
+  owner        User?         @relation(fields: [ownerId], references: [id])
+  participants Participant[]
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  googleId  String?  @unique //Esse dado tá como não obrigatorio, só para não quebrar o código,porque agora ja tem usuários cadastrados sem ele. Mas normalmente ele precisa ser obrigatório 
+  avatarUrl String? // Essa interroração especifíca que o campo pode ser null também, ou seja, não é obrigatorio
+  createdAt DateTime @default(now())
+
+  participatingAt Participant[]
+  ownPools        Pool[]
+}
+
+model Participant {
+  id String @id @default(cuid())
+
+  // Foreign key 
+  userId String
+  poolId String
+
+  gesses Guess[]
+
+  user User @relation(fields: [userId], references: [id])
+  pool Pool @relation(fields: [poolId], references: [id])
+
+  @@unique([userId, poolId]) // Isso aqui faz com que dentro da tabela "participant" esses campos não possam se repetir
+}
+
+model Game {
+  id   String   @id @default(cuid()) // Primary key
+  date DateTime
+
+  firstTeamCountryCode  String
+  secondTeamCountryCode String
+
+  guesses Guess[]
+}
+
+model Guess {
+  id String @id @default(cuid())
+
+  firstTeamPoint  Int
+  secondTeamPoint Int
+  createdAt       DateTime @default(now())
+
+  //Foreign Keys
+  gameId        String
+  participantId String
+
+  participant Participant @relation(fields: [participantId], references: [id])
+  game        Game        @relation(fields: [gameId], references: [id])
+
+  @@unique([participantId, gameId]) // Como os usuário só podem apostar 1 vez em cada bolão, essas chaves estrangeiras precisam ser únicas em cada um.
+}
