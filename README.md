@@ -1,4 +1,4 @@
-# Projeto de estudos full-stack  " nlw-copa-rocketseat "
+# Projeto de estudos full-stack  "nlw-copa-rocketseat"
 
 ## Como iniciar o projeto após baixa-lo:
 1. O primeiro de tudo é ir dentro das 3 pastas do projeto, "backend", "web" e "mobile" e usar o comando `npm install`, para instalar todas as dependências.
