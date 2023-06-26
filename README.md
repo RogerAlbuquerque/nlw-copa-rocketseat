@@ -1,42 +1,42 @@
-# Projeto de estudos full-stack  "nlw-copa-rocketseat"
+# study project full-stack  "nlw-copa-rocketseat"
 
-## Como iniciar o projeto após baixa-lo:
-1. O primeiro de tudo é ir dentro das 3 pastas do projeto, "backend", "web" e "mobile" e usar o comando `npm install`, para instalar todas as dependências.
-2. O próximo passo é colocar o backend para rodar, pois 
+## How to start the project after downloading it:
+1. The first thing is to go inside the 3 folders of the project, "backend", "web" and "mobile" and use the command `npm install`, to install all the dependencies.
+2.The next step is to get the backend running 
 
 ### Backend:
-Tanto o projeto "web" e principalmente o "mobile" precisam do backend funcionando.
-- Para rodar o backend é só no terminal dentro da pasta "backend" rodar o comando `npm run dev`, que o backend ja vai rodar.
+Both the "web" project and especially the "mobile" project need a working backend.
+- To run the backend, just run the `npm run dev` command in the terminal inside the "backend" folder, and the backend will run.
 
-#### Como ver os dados do backend no browser:
-> Caso queira ver o backend e todos os dados que tem no banco, todas as tabelas é só digitar no terminal o seguinte comando:
-`npx prisma studio`
+#### How to see the backend data in the browser?
+> If you want to see the backend and all the data in the database, all the tables, just type the following command in the terminal:
+`npx prism studio`
 
-### Projeto Web:
-  - Na parte web do projeto só da para ver algumas informações e criar bolões, para fazer apostas mesmo é só no mobile
-  - O projeto web foi criado usando o NEXTJs, então para iniciar o o projeto web localmente é só digitar no terminal dentro da pasta "web" `npm run dev`
+### Web Project:
+  -In the web part of the project, you can only see some information and create betting pools, to place bets it's only on mobile
+  - The web project was created using NEXTJs, so to start the web project locally just type in the terminal inside the "web" folder `npm run dev`
   
-### Projeto Mobile:
-  Na parte mobile do projeto é um pouco mais complicado. 
-  - Para poder usar o projeto, primeiro de tudo é preciso instalar no seu celular o app "EXPO" que tem nas lojas de app:
+### Mobile Project:
+  In the mobile part of the project it is a little more complicated.
+  - To be able to use the project, first of all you need to install the "EXPO" app on your cell phone, which you can find in the app stores:
   ![Imagem do expo encontrada na playstore](https://play-lh.googleusercontent.com/algsmuhitlyCU_Yy3IU7-7KYIhCBwx5UJG4Bln-hygBjjlUVCiGo1y8W5JNqYm9WW3s=w240-h480-rw)
-  >Essa é a imagem do expo
+  >This is the picture from the expo app on playstore
   
-  - Depois é preciso que o celular e o seu pc estejam na mesma rede WI-FI.
+  - Then, the cell phone and your PC must be on the same WI-FI network.
   
-  - Com o expo instalado no celular e os dois dispositivos na mesma rede wi-fi, é preciso dentro da pasta "mobile" rodar o comando `npx expo start`. Ao         fazer isso irá aparecer um QR code, basta ler o QR code com a camera do seu celular, ou com o leitor de QRcode dentro do app "expo".
-    Basta seguir esses passos para que ja vai abrir o app no celular funcionando, é só fazer login com alguma conta sua do google e aproveitar.
+  - With expo installed on the cell phone and the two devices on the same wi-fi network, it is necessary to run the command `npx expo start` inside the "mobile" folder. When you do this, a QR code will appear, just read the QR code with your cell phone's camera, or with the QRcode reader inside the "expo" app.
+     Just follow these steps and the app will open on your mobile phone, just log in with your google account and enjoy.
     
-    > - Uma observação a ser feita é que, as vazer pode dar um problema de cache no app mobile, para resolver isso é só rodar o projeto adicionando a flag         `--clear`
+    > - An observation to be made is that sometimes there can be a problem with the cache in the mobile app, to solve this just run the project adding the flag `--clear`
     
-    > - Tem outro erro que ocorre as vezes também que o "expo" não rodar, ou o qrcode não aparecer, para resolver isso é só reiniciar o roteador.
+    > - There is another error that occurs sometimes when the "expo" does not run, or the qrcode does not appear, to solve this just restart the router.
 
 
-## Adicionando jogos no bolão:
-Infelizmente essa parte não tinha na aula, então eu vou ter que desenvolver ela, para poder dizer quais jogos podem ser feito as apostas.
-Porém atualmente da para popular a tabela de jogos para apostar se criar o código dentro do backend da seguinte forma:
+## Adding games to the pool:
+Unfortunately, this part was not included in the class, so I will have to develop it, to be able to say which games can be placed with bets.
+However, currently, you can populate the table of games to bet if you create the code inside the backend as follows:
 
-1. Tudo acontece basicamente dentro do arquivo "seed.ts" que está dentro da pasta "prisma". Dentro desse arquivo é só apagra o que ja tem lá e escrever alguns códigos para adicionar os jogos do bolão que vão aparecer no app mobile. O código para fazer isso é mais ou menos assim:
+1. Everything basically happens inside the "seed.ts" file that is inside the "prisma" folder. Inside that file, just delete what's already there and write some codes to add the sweepstakes games that will appear in the mobile app. The code to do this looks something like this:
     ```
        await prisma.game.create({
         data: {
@@ -48,9 +48,9 @@ Porém atualmente da para popular a tabela de jogos para apostar se criar o cód
         
     })
     ```
-    Em "firstTeamCountryCode" e "secondTeamCountryCode", as duas letras representam os times que podem ser feitas as apostas, é só substituir essa parte     pelo time que você deseja.
+   In "firstTeamCountryCode" and "secondTeamCountryCode", the two letters represent the teams that can be bet on, just replace that part with the team you want.
     
-2. Após escrever os códigos com as datas,horários e times que vão jogar, é só no terminal dentro da pasta "mobile" digitar `npx prisma db seed`, esse comando vai fazer com que os jogos sejam criados dentro do backend da aplicação.
+2. After writing the codes with the dates, times and teams that will play, just type `npx prisma db seed` in the terminal inside the "mobile" folder, this command will cause the games to be created within the backend of the application.
 
-> É uma forma um pouco "Gambiarra", mas por enquanto é a unica forma de fazer isso.
+> It's a bit work around, but for now it's the only way to do it.
     
