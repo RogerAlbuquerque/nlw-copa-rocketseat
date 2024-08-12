@@ -24,7 +24,7 @@ export async function  poolRoutes(fastify: FastifyInstance) {
                                                         // Essa é a funcionalidade do pacote "ZOD" ela obriga que esse valor cuspa uma string, não pode ser null
         })
 
-     const {title} = createPoolBody.parse(request.body)   // Esse title é o nome do bolão
+     const {title} = createPoolBody.parse(request.body)   // Esse title é o nome do bolão, e o 'parse' é pra converter o body no tipo correto especificado pelo 'zod'
      
      
      const generate = new ShortUniqueId({length: 6})    //ele vai gerar um ID aleatório de 6 digitos
