@@ -155,9 +155,9 @@ export async function  poolRoutes(fastify: FastifyInstance) {
                         }
                     }
                 },include:{
-                    _count:{        //Esse dado vai incluir o resultado em valor numérico referente a quantas tabelas "participant" existem dentro desse bolão. É so passar o nome do campo, e "true" caso queira que ele seja contado, tipo "id:true"
+                    _count:{        //Esse dado vai incluir o resultado em valor numérico referente a quantas tabelas "participant" existem dentro desse bolão. É so passar o nome do campo, e "true" caso queira que ele                                        // seja contado, tipo "id:true"
                         select:{                
-                            participants:true  
+                            participants:true  // Quando coloca só "true" na busca do prisma, quer dizer que é pra ele retornar todas as informações referentes a "participant". Para retornar uma em específico, precisaria                                                //colocar o select aqui também
                         }
                     },
                     participants:{
